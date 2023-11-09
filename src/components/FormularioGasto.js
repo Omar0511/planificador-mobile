@@ -7,6 +7,7 @@ const FormularioGasto =
 (
     {
         setModal,
+        handleGasto
     }
 ) => 
 {
@@ -15,7 +16,7 @@ const FormularioGasto =
 
     const [ cantidad, setCantidad ] = useState('');
 
-    const [ cateogira, setCategoria ] = useState('');
+    const [ categoria, setCategoria ] = useState('');
 
     return (
         <SafeAreaView style={styles.contenedor}>
@@ -61,7 +62,7 @@ const FormularioGasto =
 
                     {/* Es como un SELECT */}
                     <Picker
-                        selectedValue={cateogira}
+                        selectedValue={categoria}
                         /*
                             Leer la opción que eliga
                             onValueChange={setCategoria}
@@ -83,7 +84,16 @@ const FormularioGasto =
                     </Picker>
                 </View>
 
-                <Pressable style={styles.submitBtn}>
+                <Pressable 
+                    style={styles.submitBtn}
+                    onPress={ () => handleGasto(
+                        {
+                            nombre,
+                            cantidad,
+                            categoria,
+                        }
+                    )}
+                >
                     <Text style={styles.submitBtnTexto}>Agregar Gasto</Text>
                 </Pressable>
             </View>

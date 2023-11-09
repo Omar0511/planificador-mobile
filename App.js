@@ -45,6 +45,21 @@ const App = () => {
     }
   };
 
+  const handleGasto = gasto  =>
+  {
+    // Sin incluye al menos 1 vacío
+    if ( Object.values(gasto).includes('') )
+    {
+      Alert.alert
+      (
+        "Error",
+        "Todos los campos son obligatorios",
+      )
+
+      return
+    }
+  };
+
   return (
     <View style={styles.contenedor}>
       <View style={styles.header}>
@@ -83,6 +98,7 @@ const App = () => {
           >
             <FormularioGasto 
               setModal={setModal}
+              handleGasto={handleGasto}
             />
           </Modal>
         )
