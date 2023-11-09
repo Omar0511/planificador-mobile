@@ -8,11 +8,13 @@ import {
   Text,
   View,
   Image,
+  Modal,
 } from 'react-native';
 // Importamos el componente
 import Header from './src/components/Header';
 import NuevoPresupuesto from './src/components/NuevoPresupuesto';
 import ControlPresupuesto from './src/components/ControlPresupuesto';
+import FormularioGasto from './src/components/FormularioGasto';
 
 const App = () => {
   const [ isValidPresupuesto, setIsValidPresupuesto] = useState(false);
@@ -20,6 +22,8 @@ const App = () => {
   const [ presupuesto, setPresupuesto ] = useState(0);
 
   const [ gastos, setGatos ] = useState( [] );
+
+  const [ modal, setModal ] = useState( false );
 
   const handleNuevoPresupuesto = (presupuesto) => {
     if (Number(presupuesto) > 0)
@@ -65,11 +69,27 @@ const App = () => {
         }
       </View>
 
+      {
+        modal &&
+        (
+          <Modal 
+            animationType='slide'
+            visible={modal}
+          >
+            <FormularioGasto 
+              
+            />
+          </Modal>
+        )
+      }
+
       {/* && = Cuando el resultado del OPERADOR TERNARIO es TRUE, mostrará el siguiente código */}
       {
         isValidPresupuesto &&
           (
-            <Pressable>
+            <Pressable
+              onPress={ () => setModal(!modal) }
+            >
               <Image 
                 style={styles.imagen}
                 source={ require('./src/img/nuevo-gasto.png') }
@@ -98,8 +118,8 @@ const styles = StyleSheet.create
       width: 60,
       height: 60,
       position: 'absolute',
-      top: 120,
-      right: 20,
+      top: 60,
+      right: 10,
     },
   }
 );
