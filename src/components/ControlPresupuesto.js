@@ -1,8 +1,14 @@
 import React from 'react';
 import { Text, View, Image, StyleSheet } from 'react-native';
 import globalStyles from '../styles';
+import { formatearCantidad } from '../helpers';
 
-const ControlPresupuesto = () => {
+const ControlPresupuesto = 
+(
+    {
+        presupuesto
+    }
+) => {
     return (
         <View style={styles.contenedor}>
             <View style={styles.centrarGrafica}>
@@ -10,6 +16,29 @@ const ControlPresupuesto = () => {
                     style={styles.imagen}
                     source={ require('../img/grafico.jpg') }
                 />
+            </View>
+
+            <View>
+                <Text>
+                    Presupuesto: {''}
+                    <Text>
+                        {formatearCantidad(presupuesto)}
+                    </Text>
+                </Text>
+
+                <Text>
+                    Disponible: {''}
+                    <Text>
+                        {formatearCantidad(presupuesto)}
+                    </Text>
+                </Text>
+
+                <Text>
+                    Gastado: {''}
+                    <Text>
+                        {formatearCantidad(presupuesto)}
+                    </Text>
+                </Text>
             </View>
         </View>
     )

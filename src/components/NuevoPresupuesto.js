@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Pressable, Text, View, StyleSheet, TextInput } from 'react-native';
 import globalStyles from '../styles';
 
-const NuevoPresupuesto = ( { handleNuevoPresupuesto } ) => {
-    const [presupuesto, setPresupuesto] = useState(0)
+const NuevoPresupuesto = 
+( 
+    { 
+        presupuesto, 
+        setPresupuesto, 
+        handleNuevoPresupuesto 
+    } 
+) => 
+{
 
     return (
         <View style={styles.contenedor}>
