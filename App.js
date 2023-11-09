@@ -4,14 +4,18 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  View,
 } from 'react-native';
+// Importamos el componente
+import Header from './src/components/Header';
 
 const App = () => {
 
   return (
-    <SafeAreaView>
-
-    </SafeAreaView>
+    <View>
+      {/* Utilizamos el componente */}
+      <Header/>
+    </View>
   );
 };
 
