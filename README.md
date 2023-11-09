@@ -18,3 +18,5 @@
 ### Tecnologías
 1. React Native
 1. Stylesheet
+1. Sombras
+    - ethercreative.github.io/react-native-shadow-generator/
