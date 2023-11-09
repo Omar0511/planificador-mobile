@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import {
   Alert,
+  Pressable,
   SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
   View,
+  Image,
 } from 'react-native';
 // Importamos el componente
 import Header from './src/components/Header';
@@ -17,11 +19,7 @@ const App = () => {
 
   const [ presupuesto, setPresupuesto ] = useState(0);
 
-  const [ gastos, setGatos ] = useState([
-    {id: 1, cantidad: 30},
-    {id: 2, cantidad: 40},
-    {id: 3, cantidad: 50},
-  ]);
+  const [ gastos, setGatos ] = useState( [] );
 
   const handleNuevoPresupuesto = (presupuesto) => {
     if (Number(presupuesto) > 0)
@@ -65,8 +63,20 @@ const App = () => {
                 />
               )
         }
-
       </View>
+
+      {/* && = Cuando el resultado del OPERADOR TERNARIO es TRUE, mostrará el siguiente código */}
+      {
+        isValidPresupuesto &&
+          (
+            <Pressable>
+              <Image 
+                style={styles.imagen}
+                source={ require('./src/img/nuevo-gasto.png') }
+              />
+            </Pressable>
+          )
+      }
     </View>
   );
 };
@@ -82,6 +92,14 @@ const styles = StyleSheet.create
 
     header: {
       backgroundColor: '#3B82F6',
+    },
+
+    imagen: {
+      width: 60,
+      height: 60,
+      position: 'absolute',
+      top: 120,
+      right: 20,
     },
   }
 );
