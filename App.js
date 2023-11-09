@@ -16,6 +16,7 @@ import NuevoPresupuesto from './src/components/NuevoPresupuesto';
 import ControlPresupuesto from './src/components/ControlPresupuesto';
 import FormularioGasto from './src/components/FormularioGasto';
 import { generarId } from './src/helpers';
+import ListadoGastos from './src/components/ListadoGastos';
 
 const App = () => {
   const [ isValidPresupuesto, setIsValidPresupuesto] = useState(false);
@@ -91,6 +92,13 @@ const App = () => {
               )
         }
       </View>
+
+      {
+        isValidPresupuesto &&
+        (
+          <ListadoGastos/>
+        )
+      }
 
       {
         modal &&
