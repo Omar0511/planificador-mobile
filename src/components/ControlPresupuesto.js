@@ -18,24 +18,24 @@ const ControlPresupuesto =
                 />
             </View>
 
-            <View>
-                <Text>
+            <View style={styles.contenedorTexto}>
+                <Text style={styles.valor}>
                     Presupuesto: {''}
-                    <Text>
+                    <Text style={styles.label}>
                         {formatearCantidad(presupuesto)}
                     </Text>
                 </Text>
 
-                <Text>
+                <Text style={styles.valor}>
                     Disponible: {''}
-                    <Text>
+                    <Text style={styles.label}>
                         {formatearCantidad(presupuesto)}
                     </Text>
                 </Text>
 
-                <Text>
+                <Text style={styles.valor}>
                     Gastado: {''}
-                    <Text>
+                    <Text style={styles.label}>
                         {formatearCantidad(presupuesto)}
                     </Text>
                 </Text>
@@ -58,7 +58,22 @@ const styles = StyleSheet.create
         imagen: {
             width: 250,
             height: 250,
-        }
+        },
+
+        contenedorTexto: {
+            marginTop: 50,
+        },
+
+        valor: {
+            fontSize: 24,
+            textAlign: 'center',
+            marginBottom: 10,
+        },
+
+        label: {
+            fontWeight: '700',
+            color: '#3B82F6',
+        },
     }
 )
 
