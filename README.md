@@ -23,3 +23,8 @@
 1. Stylesheet
 1. Sombras
     - ethercreative.github.io/react-native-shadow-generator/
+1. Picker
+    - `npm install @react-native-picker/picker --save`
+    - **Nota**: después de ejcutar el PICKER, tenemos que cerrar y abrir de nuevo el emulador:
+        - `npx react-native run-android`
+1. 

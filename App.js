@@ -77,7 +77,7 @@ const App = () => {
             visible={modal}
           >
             <FormularioGasto 
-              
+
             />
           </Modal>
         )
@@ -118,8 +118,8 @@ const styles = StyleSheet.create
       width: 60,
       height: 60,
       position: 'absolute',
-      top: 60,
-      right: 10,
+      top: 10,
+      right: 20,
     },
   }
 );
