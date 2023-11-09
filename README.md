@@ -14,6 +14,9 @@
 1. Android SDK
 1. Emulador Android (AVD) 
     - Una vez creado el Emulador y creado nuestro proyyecto, mediante la consola dentro de la carpeta de nuestro proyecto, tenemos que ejecutar el siguiente comando:  `npx react-native run-android`
+1. Flipper
+    - nos ayuda a debuguear la app
+
 
 ### Tecnologías
 1. React Native

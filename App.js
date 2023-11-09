@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Alert,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -12,13 +13,35 @@ import NuevoPresupuesto from './src/components/NuevoPresupuesto';
 
 const App = () => {
 
+  const handleNuevoPresupuesto = (presupuesto) => {
+    if (Number(presupuesto) > 0)
+    {
+      console.log('Presupuesto válido');
+    }
+    else
+    {
+      Alert.alert
+      (
+        'Error',
+        'El presupuesto no puede ser: 0 o menor',
+        [
+          {
+            text: 'OK',
+          }
+        ]
+      );
+    }
+  };
+
   return (
     <View style={styles.contenedor}>
       <View style={styles.header}>
         {/* Utilizamos el componente */}
         <Header/>
-        
-        <NuevoPresupuesto/>
+
+        <NuevoPresupuesto 
+          handleNuevoPresupuesto = {handleNuevoPresupuesto}
+        />
       </View>
     </View>
   );
