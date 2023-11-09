@@ -15,13 +15,14 @@ import Header from './src/components/Header';
 import NuevoPresupuesto from './src/components/NuevoPresupuesto';
 import ControlPresupuesto from './src/components/ControlPresupuesto';
 import FormularioGasto from './src/components/FormularioGasto';
+import { generarId } from './src/helpers';
 
 const App = () => {
   const [ isValidPresupuesto, setIsValidPresupuesto] = useState(false);
 
   const [ presupuesto, setPresupuesto ] = useState(0);
 
-  const [ gastos, setGatos ] = useState( [] );
+  const [ gastos, setGastos ] = useState( [] );
 
   const [ modal, setModal ] = useState( false );
 
@@ -58,6 +59,13 @@ const App = () => {
 
       return
     }
+
+    // Añadir el nuevo gasta el STATE
+    gasto.id = generarId();
+
+    setGastos( [...gastos, gasto]);
+
+    setModal(!modal);
   };
 
   return (
