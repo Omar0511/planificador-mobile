@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Pressable, SafeAreaView, Text, TextInput, View, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import globalStyles from '../styles';
@@ -10,6 +10,13 @@ const FormularioGasto =
     }
 ) => 
 {
+
+    const [ nombre, setNombre ] = useState('');
+
+    const [ cantidad, setCantidad ] = useState('');
+
+    const [ cateogira, setCategoria ] = useState('');
+
     return (
         <SafeAreaView style={styles.contenedor}>
             <View>
@@ -26,18 +33,26 @@ const FormularioGasto =
 
                 <View style={styles.campo}>
                     <Text style={styles.label}>Nombre Gasto</Text>
+
                     <TextInput 
                         style={styles.input}
                         placeholder='Nombre del gasto. Ej. Comida'
+                        value={nombre}
+                        // Leer lo que el usuario escriba
+                        onChangeText={setNombre}
                     />
                 </View>
 
                 <View style={styles.campo}>
                     <Text style={styles.label}>Cantidad Gasto</Text>
+
                     <TextInput 
                         style={styles.input}
                         placeholder='Cantidad del gasto. Ej. 300'
                         keyboardType='numeric'
+                        value={cantidad}
+                        // Leer lo que el usuario escriba
+                        onChangeText={setCantidad}
                     />
                 </View>
 
@@ -45,7 +60,18 @@ const FormularioGasto =
                     <Text style={styles.label}>Categoría Gasto</Text>
 
                     {/* Es como un SELECT */}
-                    <Picker>
+                    <Picker
+                        selectedValue={cateogira}
+                        /*
+                            Leer la opción que eliga
+                            onValueChange={setCategoria}
+                        */
+                        onValueChange={
+                            (valor) => {
+                                setCategoria(valor)
+                            }
+                        }
+                    >
                         <Picker.Item label='-- Seleccione --' value="" />                        
                         <Picker.Item label='Ahorro' value="ahorro" /> 
                         <Picker.Item label='Comida' value="comida" /> 
