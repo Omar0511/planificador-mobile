@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, Image, StyleSheet } from 'react-native';
 import globalStyles from '../styles';
 import { formatearCantidad } from '../helpers';
@@ -6,9 +6,26 @@ import { formatearCantidad } from '../helpers';
 const ControlPresupuesto = 
 (
     {
-        presupuesto
+        presupuesto,
+        gastos,
     }
-) => {
+) => 
+{
+
+    const [ disponible, setDisponible ] = useState(0);
+
+    const [ gastado, setGastado ] = useState(0);
+
+    useEffect( () => {
+        // El 0 es valor inicial
+        const totalGastado = gastos.reduce( (total, gasto) => Number(gasto.cantidad) + total, 0 );
+
+        const totalDisponible = presupuesto - totalGastado;
+
+        setGastado(totalGastado);
+        setDisponible(totalDisponible);
+    }, [] );
+
     return (
         <View style={styles.contenedor}>
             <View style={styles.centrarGrafica}>
@@ -19,24 +36,24 @@ const ControlPresupuesto =
             </View>
 
             <View style={styles.contenedorTexto}>
-                <Text style={styles.valor}>
+                <Text style={styles.label}>
                     Presupuesto: {''}
-                    <Text style={styles.label}>
+                    <Text style={styles.valor}>
                         {formatearCantidad(presupuesto)}
                     </Text>
                 </Text>
 
-                <Text style={styles.valor}>
+                <Text style={styles.label}>
                     Disponible: {''}
-                    <Text style={styles.label}>
-                        {formatearCantidad(presupuesto)}
+                    <Text style={styles.valor}>
+                        {formatearCantidad(disponible)}
                     </Text>
                 </Text>
 
-                <Text style={styles.valor}>
+                <Text style={styles.label}>
                     Gastado: {''}
-                    <Text style={styles.label}>
-                        {formatearCantidad(presupuesto)}
+                    <Text style={styles.valor}>
+                        {formatearCantidad(gastado)}
                     </Text>
                 </Text>
             </View>
@@ -64,15 +81,17 @@ const styles = StyleSheet.create
             marginTop: 50,
         },
 
-        valor: {
+        label: {
+            fontWeight: '700',
             fontSize: 24,
+            color: '#3B82F6',
             textAlign: 'center',
             marginBottom: 10,
         },
 
-        label: {
-            fontWeight: '700',
-            color: '#3B82F6',
+        valor: {
+            fontWeight: '400',
+            color: '#000',
         },
     }
 )
