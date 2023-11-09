@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Alert,
   SafeAreaView,
@@ -10,13 +10,15 @@ import {
 // Importamos el componente
 import Header from './src/components/Header';
 import NuevoPresupuesto from './src/components/NuevoPresupuesto';
+import ControlPresupuesto from './src/components/ControlPresupuesto';
 
 const App = () => {
+  const [ isValidPresupuesto, setIsValidPresupuesto] = useState(false)
 
   const handleNuevoPresupuesto = (presupuesto) => {
     if (Number(presupuesto) > 0)
     {
-      console.log('Presupuesto válido');
+      setIsValidPresupuesto(true)
     }
     else
     {
@@ -39,9 +41,20 @@ const App = () => {
         {/* Utilizamos el componente */}
         <Header/>
 
-        <NuevoPresupuesto 
-          handleNuevoPresupuesto = {handleNuevoPresupuesto}
-        />
+        {
+          isValidPresupuesto
+            ? (
+                <ControlPresupuesto 
+                
+                />
+              )
+            : (
+                <NuevoPresupuesto 
+                  handleNuevoPresupuesto = {handleNuevoPresupuesto}
+                />
+              )
+        }
+
       </View>
     </View>
   );
