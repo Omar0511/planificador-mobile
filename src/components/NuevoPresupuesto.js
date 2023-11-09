@@ -1,13 +1,19 @@
 import React from 'react';
-import { Pressable, Text, View, StyleSheet } from 'react-native';
+import { Pressable, Text, View, StyleSheet, TextInput } from 'react-native';
 
 const NuevoPresupuesto = () => {
     return (
         <View style={styles.contenedor}>
-            <Text>Definir Presupuesto</Text>
+            <Text style={styles.label}>Definir Presupuesto</Text>
 
-            <Pressable>
-                <Text>Agregar Presupuesto</Text>
+            <TextInput
+                keyboardType='numeric'
+                placeholder='Agrega tu presupuesto: Ej. 300'
+                style={styles.input}
+            />
+
+            <Pressable style={styles.boton}>
+                <Text style={styles.botonTexto}>Agregar Presupuesto</Text>
             </Pressable>
         </View>
     )
@@ -32,6 +38,34 @@ const styles = StyleSheet.create
             shadowRadius: 2.62,
 
             elevation: 4,
+        },
+
+        label: {
+            textAlign: 'center',
+            fontSize: 24,
+            color: '#3B82F6',
+        },
+
+        input: {
+            marginTop: 30,
+            backgroundColor: '#F5F5F5',
+            padding: 10,
+            borderRadius: 10,
+            textAlign: 'center',
+        },
+
+        boton: {
+            marginTop: 30,
+            backgroundColor: '#1048A4',
+            padding: 10,
+            borderRadius: 10,
+        },
+
+        botonTexto: {
+            textAlign: 'center',
+            color: '#FFF',
+            textTransform: 'uppercase',
+            fontWeight: 'bold',
         },
     }
 )
