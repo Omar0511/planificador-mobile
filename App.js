@@ -165,6 +165,7 @@ const App = () => {
         isValidPresupuesto &&
           (
             <Pressable
+              style={styles.pressable}
               onPress={ () => setModal(!modal) }
             >
               <Image 
@@ -192,13 +193,18 @@ const styles = StyleSheet.create
       minHeight: 400,
     },
 
-    imagen: {
+    pressable: {
       width: 60,
       height: 60,
       position: 'absolute',
       bottom: 40,
       right: 30,
-    },
+    }, 
+
+    imagen: {
+      width: 60,
+      height: 60,
+    }, 
   }
 );
 
