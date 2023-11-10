@@ -52,7 +52,7 @@ const App = () => {
   const handleGasto = gasto  =>
   {
     // Sin incluye al menos 1 vacío
-    if ( Object.values(gasto).includes('') )
+    if ( [ gasto.nombre, gasto.categoria, gasto.cantidad ].includes('') )
     {
       Alert.alert
       (
@@ -63,11 +63,20 @@ const App = () => {
       return
     }
 
-    // Añadir el nuevo gasta el STATE
-    gasto.id = generarId();
-    gasto.fecha = Date.now();
+    if (gasto.id)
+    {
+      const gastosActualizados = gastos.map( gastoState => gastoState.id === gasto.id ? gasto : gastoState );
 
-    setGastos( [...gastos, gasto]);
+      setGastos(gastosActualizados);
+    }
+    else
+    {
+      // Añadir el nuevo gasta el STATE
+      gasto.id = generarId();
+      gasto.fecha = Date.now();
+
+      setGastos( [...gastos, gasto]);
+    }
 
     setModal(!modal);
   };

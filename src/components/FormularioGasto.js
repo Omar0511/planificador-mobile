@@ -22,6 +22,8 @@ const FormularioGasto =
 
     const [ id, setId ] = useState('');
 
+    const [ fecha, setFecha ] = useState('');
+
     useEffect(() => {
         // ?. = Optional chaining: lee el valor de una propiedad ubicada dentro de una cadena de objetos
         if (gasto?.nombre)
@@ -30,6 +32,7 @@ const FormularioGasto =
             setCantidad(gasto.cantidad);
             setCategoria(gasto.categoria);
             setId(gasto.id);
+            setFecha(gasto.fecha);
         }
     }, [gasto]);
 
@@ -115,6 +118,8 @@ const FormularioGasto =
                             nombre,
                             cantidad,
                             categoria,
+                            id,
+                            fecha
                         }
                     )}
                 >
