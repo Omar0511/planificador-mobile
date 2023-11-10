@@ -10,6 +10,7 @@ const FormularioGasto =
         handleGasto,
         gasto,
         setGasto,
+        eliminarGasto,
     }
 ) => 
 {
@@ -51,6 +52,7 @@ const FormularioGasto =
 
                 <Pressable 
                     style={[styles.btn, styles.btnEliminar]}
+                    onPress={ () => eliminarGasto(id) }
                 >
                     <Text style={styles.btnTexto}>Eliminar</Text>
                 </Pressable>
