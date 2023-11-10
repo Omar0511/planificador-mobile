@@ -71,36 +71,38 @@ const App = () => {
 
   return (
     <View style={styles.contenedor}>
-      <View style={styles.header}>
-        {/* Utilizamos el componente */}
-        <Header/>
+      <ScrollView>
+        <View style={styles.header}>
+          {/* Utilizamos el componente */}
+          <Header/>
+
+          {
+            isValidPresupuesto
+              ? (
+                  <ControlPresupuesto 
+                    presupuesto={presupuesto}
+                    gastos={gastos}
+                  />
+                )
+              : (
+                  <NuevoPresupuesto 
+                    presupuesto={presupuesto}
+                    setPresupuesto={setPresupuesto}
+                    handleNuevoPresupuesto = {handleNuevoPresupuesto}
+                  />
+                )
+          }
+        </View>
 
         {
-          isValidPresupuesto
-            ? (
-                <ControlPresupuesto 
-                  presupuesto={presupuesto}
-                  gastos={gastos}
-                />
-              )
-            : (
-                <NuevoPresupuesto 
-                  presupuesto={presupuesto}
-                  setPresupuesto={setPresupuesto}
-                  handleNuevoPresupuesto = {handleNuevoPresupuesto}
-                />
-              )
+          isValidPresupuesto &&
+          (
+            <ListadoGastos 
+              gastos={gastos}
+            />
+          )
         }
-      </View>
-
-      {
-        isValidPresupuesto &&
-        (
-          <ListadoGastos 
-            gastos={gastos}
-          />
-        )
-      }
+      </ScrollView>
 
       {
         modal &&
@@ -151,14 +153,15 @@ const styles = StyleSheet.create
 
     header: {
       backgroundColor: '#3B82F6',
+      minHeight: 400,
     },
 
     imagen: {
       width: 60,
       height: 60,
       position: 'absolute',
-      top: 10,
-      right: 20,
+      bottom: 40,
+      right: 30,
     },
   }
 );

@@ -33,6 +33,7 @@ const styles = StyleSheet.create
     {
         contenedor: {
             marginTop: 70,
+            marginBottom: 100,
         },
 
         titulo: {
@@ -40,10 +41,11 @@ const styles = StyleSheet.create
             fontSize: 30,
             textAlign: 'center',
             fontWeight: '700',
+            marginTop: 20,
         },
 
         noGastos: {
-            marginTop: 20,
+            marginVertical: 20,
             textAlign: 'center',
             fontSize: 20,
         },
