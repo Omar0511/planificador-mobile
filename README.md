@@ -28,3 +28,12 @@
     - **Nota**: después de ejcutar el PICKER, tenemos que cerrar y abrir de nuevo el emulador:
         - `npx react-native run-android`
 1. 
+
+#### Notas
+1. Si te diera ERROR el formato de las cantidades en ANDROID, tenemos que realizar lo siguiente:
+1. Dentro de la siguiente ruta:
+    - android / app / build.gradle
+1. Debemos buscar la línea: 112 o 113 y cambiar la variable o función por la siguiente:
+    - `def jscFlavor = 'org.webkit:android-jsc:+'`
+1. Cambiarlo por:
+    - **`def jscFlavor = 'org.webkit:android-jsc-intl:+'`**
