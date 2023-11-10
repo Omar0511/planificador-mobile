@@ -27,6 +27,8 @@ const App = () => {
 
   const [ modal, setModal ] = useState( false );
 
+  const [ gasto, setGasto ] = useState( {} );
+
   const handleNuevoPresupuesto = (presupuesto) => {
     if (Number(presupuesto) > 0)
     {
@@ -100,6 +102,8 @@ const App = () => {
           (
             <ListadoGastos 
               gastos={gastos}
+              setModal={setModal}
+              setGasto={setGasto}
             />
           )
         }
@@ -120,6 +124,7 @@ const App = () => {
             <FormularioGasto 
               setModal={setModal}
               handleGasto={handleGasto}
+              setGasto={setGasto}
             />
           </Modal>
         )

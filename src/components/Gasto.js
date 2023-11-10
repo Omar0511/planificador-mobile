@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
+import { Text, View, StyleSheet, Image, Pressable } from 'react-native';
 import globalStyles from '../styles';
 import { formatearCantidad, formatearFecha } from '../helpers';
 
@@ -18,30 +18,42 @@ const Gasto =
 (
     {
         gasto,
+        setModal,
+        setGasto,
     }
 ) => 
 {
     const { nombre, categoria, cantidad, fecha } = gasto;
 
+    const handleAcciones = () =>
+    {
+        setModal(true);
+        setGasto(gasto);
+    };
+
     return (
-        <View style={styles.contenedor}>
-            <View style={styles.contenido}>
-                <View style={styles.contenedorImagen}>
-                    <Image 
-                        style={styles.imagen}
-                        source={diccionarioIconos[categoria]}
-                    />
+        <Pressable
+            onPress={handleAcciones}
+        >
+            <View style={styles.contenedor}>
+                <View style={styles.contenido}>
+                    <View style={styles.contenedorImagen}>
+                        <Image 
+                            style={styles.imagen}
+                            source={diccionarioIconos[categoria]}
+                        />
 
-                    <View style={styles.contenedorTexto}>
-                        <Text style={styles.categoria}>{categoria}</Text>
-                        <Text style={styles.nombre}>{nombre}</Text>
-                        <Text style={styles.fecha}>Fecha: {formatearFecha(fecha)}</Text>
+                        <View style={styles.contenedorTexto}>
+                            <Text style={styles.categoria}>{categoria}</Text>
+                            <Text style={styles.nombre}>{nombre}</Text>
+                            <Text style={styles.fecha}>Fecha: {formatearFecha(fecha)}</Text>
+                        </View>
                     </View>
-                </View>
 
-                <Text style={styles.cantidad}>{formatearCantidad(cantidad)}</Text>                
+                    <Text style={styles.cantidad}>{formatearCantidad(cantidad)}</Text>                
+                </View>
             </View>
-        </View>
+        </Pressable>
     )
 }
 

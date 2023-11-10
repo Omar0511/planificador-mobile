@@ -7,7 +7,7 @@ const FormularioGasto =
 (
     {
         setModal,
-        handleGasto
+        handleGasto,
     }
 ) => 
 {
@@ -22,7 +22,9 @@ const FormularioGasto =
         <SafeAreaView style={styles.contenedor}>
             <View>
                 <Pressable 
-                    onPress={ () => setModal(false) }
+                    onPress={ () => {
+                        setModal(false)
+                    } }
                     style={styles.btnCancelar}
                 >
                     <Text style={styles.btnCancelarTexto}>Cancelar</Text>

@@ -6,6 +6,8 @@ const ListadoGastos =
 (
     {
         gastos,
+        setModal,
+        setGasto,
     }
 ) => {
     return (
@@ -20,6 +22,8 @@ const ListadoGastos =
                             <Gasto 
                                 key={gasto.id}
                                 gasto={gasto}
+                                setModal={setModal}
+                                setGasto={setGasto}
                             />
                         )
                     )
