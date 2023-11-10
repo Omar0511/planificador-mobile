@@ -38,15 +38,21 @@ const FormularioGasto =
 
     return (
         <SafeAreaView style={styles.contenedor}>
-            <View>
+            <View style={styles.contenedorBotones}>
                 <Pressable 
                     onPress={ () => {
                         setModal(false)
                         setGasto({})
                     } }
-                    style={styles.btnCancelar}
+                    style={[styles.btn, styles.btnCancelar]}
                 >
-                    <Text style={styles.btnCancelarTexto}>Cancelar</Text>
+                    <Text style={styles.btnTexto}>Cancelar</Text>
+                </Pressable>
+
+                <Pressable 
+                    style={[styles.btn, styles.btnEliminar]}
+                >
+                    <Text style={styles.btnTexto}>Eliminar</Text>
                 </Pressable>
             </View>
 
@@ -144,14 +150,27 @@ const styles = StyleSheet.create
             flex: 1,
         },
 
-        btnCancelar: {
-            backgroundColor: '#DB2777',
+        contenedorBotones: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',            
+        },  
+
+        btn: {
             padding: 10,
             marginTop: 30,
             marginHorizontal: 10,
+            flex: 1,
         },
 
-        btnCancelarTexto: {
+        btnEliminar: {
+            backgroundColor: 'red',
+        },
+
+        btnCancelar: {
+            backgroundColor: '#DB2777',
+        },
+
+        btnTexto: {
             textAlign: 'center',
             textTransform: 'uppercase',
             fontWeight: 'bold',
