@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Pressable, SafeAreaView, Text, TextInput, View, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import globalStyles from '../styles';
@@ -8,6 +8,8 @@ const FormularioGasto =
     {
         setModal,
         handleGasto,
+        gasto,
+        setGasto,
     }
 ) => 
 {
@@ -18,12 +20,26 @@ const FormularioGasto =
 
     const [ categoria, setCategoria ] = useState('');
 
+    const [ id, setId ] = useState('');
+
+    useEffect(() => {
+        // ?. = Optional chaining: lee el valor de una propiedad ubicada dentro de una cadena de objetos
+        if (gasto?.nombre)
+        {
+            setNombre(gasto.nombre);
+            setCantidad(gasto.cantidad);
+            setCategoria(gasto.categoria);
+            setId(gasto.id);
+        }
+    }, [gasto]);
+
     return (
         <SafeAreaView style={styles.contenedor}>
             <View>
                 <Pressable 
                     onPress={ () => {
                         setModal(false)
+                        setGasto({})
                     } }
                     style={styles.btnCancelar}
                 >
@@ -32,7 +48,13 @@ const FormularioGasto =
             </View>
 
             <View style={styles.formulario}>
-                <Text style={styles.titulo}>Nuevo Gasto</Text>
+                <Text style={styles.titulo}>
+                    {
+                        gasto?.nombre
+                            ? 'Editar Gasto'
+                            : 'Nuevo Gasto'
+                    }
+                </Text>
 
                 <View style={styles.campo}>
                     <Text style={styles.label}>Nombre Gasto</Text>
@@ -96,7 +118,13 @@ const FormularioGasto =
                         }
                     )}
                 >
-                    <Text style={styles.submitBtnTexto}>Agregar Gasto</Text>
+                    <Text style={styles.submitBtnTexto}>
+                    {
+                        gasto?.nombre
+                            ? 'Guardar Cambios Gasto'
+                            : 'Agregar Gasto'
+                    }
+                    </Text>
                 </Pressable>
             </View>
         </SafeAreaView>
