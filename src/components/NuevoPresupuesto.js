@@ -15,8 +15,15 @@ const NuevoPresupuesto =
 
     useEffect( () => {
         const obtenerAS = async () => {
-            const valor = await AsyncStorage.getItem('prueba_As');
-            console.log(valor);
+            try
+            {
+                const valor = await AsyncStorage.getItem('prueba_As');
+                console.log(valor);
+            }
+            catch (error)
+            {
+                console.log(error);
+            }
         }
         obtenerAS();
     }, []);
