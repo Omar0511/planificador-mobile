@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Pressable, Text, View, StyleSheet, TextInput } from 'react-native';
 import globalStyles from '../styles';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const NuevoPresupuesto = 
 ( 
@@ -12,21 +11,6 @@ const NuevoPresupuesto =
     } 
 ) => 
 {
-
-    useEffect( () => {
-        const obtenerAS = async () => {
-            try
-            {
-                const valor = await AsyncStorage.getItem('prueba_As');
-                console.log(valor);
-            }
-            catch (error)
-            {
-                console.log(error);
-            }
-        }
-        obtenerAS();
-    }, []);
 
     return (
         <View style={styles.contenedor}>
