@@ -33,6 +33,7 @@ const App = () => {
 
   const [ filtro, setFiltro ] = useState( '' );
 
+
   const [ gastosFiltrados, setGastosFiltrados ] = useState( '' );
 
   useEffect( () => {
@@ -71,9 +72,25 @@ const App = () => {
           console.error(error);
         }
       }
-    }
+    };
 
   });
+
+  useEffect( () => {
+    const guardarGastosStorage = async () => {
+      try
+      {
+        await AsyncStorage.setItem('planificador_gastos', JSON.stringify(gastoss));
+      }
+      catch (error)
+      {
+        console.log(error);
+      }
+    };
+
+    guardarGastosStorage();
+
+  }, [gastos]);
 
   const handleNuevoPresupuesto = (presupuesto) => {
     if (Number(presupuesto) > 0)
