@@ -16,12 +16,19 @@ const ControlPresupuesto =
 
     const [ gastado, setGastado ] = useState(0);
 
+    const [ porcentaje, setPorcentaje ] = useState(0);
+
     useEffect( () => {
         // El 0 es valor inicial
         const totalGastado = gastos.reduce( (total, gasto) => Number(gasto.cantidad) + total, 0 );
 
         const totalDisponible = presupuesto - totalGastado;
 
+        const nuevoPorcentaje = (
+            ( (presupuesto - totalDisponible) / presupuesto ) * 100
+        );
+
+        setPorcentaje(nuevoPorcentaje);
         setGastado(totalGastado);
         setDisponible(totalDisponible);
     }, [gastos] );
@@ -33,6 +40,7 @@ const ControlPresupuesto =
                     style={styles.imagen}
                     source={ require('../img/grafico.jpg') }
                 />
+                <Text>Porcentaje: %{porcentaje.toFixed(2)}</Text>
             </View>
 
             <View style={styles.contenedorTexto}>
