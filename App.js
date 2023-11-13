@@ -30,6 +30,10 @@ const App = () => {
 
   const [ gasto, setGasto ] = useState( {} );
 
+  const [ filtro, setFiltro ] = useState( '' );
+
+  const [ gastosFiltrados, setGastosFiltrados ] = useState( '' );
+
   const handleNuevoPresupuesto = (presupuesto) => {
     if (Number(presupuesto) > 0)
     {
@@ -131,9 +135,12 @@ const App = () => {
           (
             <>
               <Filtro
-
+                filtro={filtro}
+                setFiltro={setFiltro}
+                gastos={gastos}
+                setGastosFiltrados={setGastosFiltrados}
               />
-              
+
               <ListadoGastos 
                 gastos={gastos}
                 setModal={setModal}
