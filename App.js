@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Alert,
   Pressable,
@@ -18,6 +18,8 @@ import FormularioGasto from './src/components/FormularioGasto';
 import { generarId } from './src/helpers';
 import ListadoGastos from './src/components/ListadoGastos';
 import Filtro from './src/components/Filtro';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from'@react-native-async-storage/async-storage';
 
 const App = () => {
   const [ isValidPresupuesto, setIsValidPresupuesto] = useState(false);
@@ -53,6 +55,15 @@ const App = () => {
       );
     }
   };
+
+  useEffect( () => {
+    const almacenarAS = async () => {
+      const nombre = 'Omar';
+      await AsyncStorage.setItem('prueba_as', nombre);
+    }
+
+    almacenarAS()
+  }, []);
 
   const handleGasto = gasto  =>
   {
