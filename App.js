@@ -18,6 +18,7 @@ import FormularioGasto from './src/components/FormularioGasto';
 import { generarId } from './src/helpers';
 import ListadoGastos from './src/components/ListadoGastos';
 import Filtro from './src/components/Filtro';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const App = () => {
   const [ isValidPresupuesto, setIsValidPresupuesto] = useState(false);
@@ -34,6 +35,29 @@ const App = () => {
 
   const [ gastosFiltrados, setGastosFiltrados ] = useState( '' );
 
+  useEffect( () => {
+    const obtenerPresupuestoStorage = async () => {
+      try
+      {
+        const presupuestoStorage = await AsyncStorage.getItem('planificador_presupuesto') ?? 0;
+
+        if (presupuestoStorage > 0)
+        {
+          setPresupuesto(presupuestoStorage);
+          setIsValidPresupuesto(true);
+        }
+
+      }
+      catch (error)
+      {
+        console.log(error);emula
+      }
+    };
+
+    obtenerPresupuestoStorage();
+  }, []);
+
+  // Se puede tener más de un useEffect, es recomendado
   useEffect( () => {
     if (isValidPresupuesto)
     {
