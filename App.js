@@ -33,7 +33,6 @@ const App = () => {
 
   const [ filtro, setFiltro ] = useState( '' );
 
-
   const [ gastosFiltrados, setGastosFiltrados ] = useState( '' );
 
   useEffect( () => {
@@ -51,7 +50,7 @@ const App = () => {
       }
       catch (error)
       {
-        console.log(error);emula
+        console.log(error);
       }
     };
 
@@ -71,10 +70,12 @@ const App = () => {
         {
           console.error(error);
         }
-      }
-    };
+      };
 
-  });
+      guardarPresupuestoStorage();
+    }
+
+  }, [isValidPresupuesto]);
 
   useEffect( () => {
     const obtenerGastosStorage = async () => {
@@ -83,24 +84,21 @@ const App = () => {
         const gastosStorage = await AsyncStorage.getItem('planificador_gastos');
 
         setGastos( gastosStorage ? JSON.parse(gastosStorage) : [] );
-
-        console.log(gastosStorage);
       }
       catch (error)
       {
         console.log(error);
       }
-
-      obtenerGastosStorage();
     };
-
+    
+    obtenerGastosStorage();
   }, [] );
 
   useEffect( () => {
     const guardarGastosStorage = async () => {
       try
       {
-        await AsyncStorage.setItem('planificador_gastos', JSON.stringify(gastoss));
+        await AsyncStorage.setItem('planificador_gastos', JSON.stringify(gastos));
       }
       catch (error)
       {
@@ -183,6 +181,31 @@ const App = () => {
     )
   }
 
+  const resetearApp = () => {
+    Alert.alert(
+      '¿Deseas resetear la app?',
+      'Esto eliminará el presupuesto y los gastos',
+      [
+        { text: 'No', style: 'cancel'},
+        { text: 'Si, Eliminar', onPress: async () => {
+          try
+          {
+            await AsyncStorage.clear();
+
+            setIsValidPresupuesto(false);
+            setPresupuesto(0);
+            setGastos([]);
+            
+          }
+          catch (error)
+          {
+            console.log(error);
+          }
+        }}
+      ]
+    )
+  }
+
   return (
     <View style={styles.contenedor}>
       <ScrollView>
@@ -196,6 +219,7 @@ const App = () => {
                   <ControlPresupuesto 
                     presupuesto={presupuesto}
                     gastos={gastos}
+                    resetearApp={resetearApp}
                   />
                 )
               : (

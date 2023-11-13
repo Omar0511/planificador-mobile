@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, Image, StyleSheet } from 'react-native';
+import { Text, View, Image, StyleSheet, Pressable } from 'react-native';
 import globalStyles from '../styles';
 import { formatearCantidad } from '../helpers';
 
@@ -8,6 +8,7 @@ const ControlPresupuesto =
     {
         presupuesto,
         gastos,
+        resetearApp,
     }
 ) => 
 {
@@ -44,6 +45,13 @@ const ControlPresupuesto =
             </View>
 
             <View style={styles.contenedorTexto}>
+                <Pressable 
+                    onLongPress={resetearApp}
+                    style={styles.boton}
+                >
+                    <Text style={styles.textoBoton}>Reiniciar App</Text>
+                </Pressable>
+
                 <Text style={styles.label}>
                     Presupuesto: {''}
                     <Text style={styles.valor}>
@@ -78,6 +86,20 @@ const styles = StyleSheet.create
 
         centrarGrafica: {
             alignItems: 'center',
+        },
+
+        boton: {
+            backgroundColor: '#DB2777',
+            padding: 10,
+            marginBottom: 40,
+            borderRadius: 5,
+        },
+
+        textoBoton: {
+            textAlign: 'center',
+            color: '#FFF',
+            fontWeight: 'bold',
+            textTransform: 'uppercase',
         },
 
         imagen: {
