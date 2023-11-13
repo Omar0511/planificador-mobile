@@ -34,6 +34,23 @@ const App = () => {
 
   const [ gastosFiltrados, setGastosFiltrados ] = useState( '' );
 
+  useEffect( () => {
+    if (isValidPresupuesto)
+    {
+      const guardarPresupuestoStorage = async () => {
+        try 
+        {
+          await AsyncStorage.setItem('planificador_presupuesto', presupuesto);
+        }
+        catch (error)
+        {
+          console.error(error);
+        }
+      }
+    }
+
+  });
+
   const handleNuevoPresupuesto = (presupuesto) => {
     if (Number(presupuesto) > 0)
     {
