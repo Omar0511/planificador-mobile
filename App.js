@@ -170,7 +170,7 @@ const App = () => {
       [
         { text: 'No', style: 'cancel' },
         { text: 'Si', onPress: () => {
-            const gastosActualizados = gastos.filter( gastoState = gastoState.id !== id);
+            const gastosActualizados = gastos.filter( gastoState => gastoState.id !== id);
 
             setGastos(gastosActualizados);
             setModal(!modal);
@@ -195,7 +195,6 @@ const App = () => {
             setIsValidPresupuesto(false);
             setPresupuesto(0);
             setGastos([]);
-            
           }
           catch (error)
           {
